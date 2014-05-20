@@ -2,7 +2,6 @@ module AppParametersSetter
 	class AppParameter
 
 		def self.load
-			print "#{Rails.root}\n"
 			params = YAML.load_file("#{Rails.root}/config/app_parameters.yml")[Rails.env]
 			params.each do |key,value|
 				if value.is_a? String
@@ -16,9 +15,6 @@ module AppParametersSetter
 			end
 		end
 		def self.reload!
-			print "reload!"
 		end
-
-
 	end
 end
