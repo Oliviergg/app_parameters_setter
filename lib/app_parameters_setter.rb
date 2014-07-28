@@ -1,5 +1,13 @@
 require "app_parameters_setter/version"
-require "app_parameters_setter/integration"
+if defined? Rails
+  require "app_parameters_setter/rails_integration"
+else
+  require "app_parameters_setter/ruby_integration"
+  require "app_parameters_setter/app_parameter"
+  Object.const_set("AppParameter", AppParametersSetter::AppParameter)
+  AppParameter.load
+end
+
 module AppParametersSetter
   # ensures the setup only gets run once
   @@_ran_once = false

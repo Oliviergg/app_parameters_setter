@@ -1,5 +1,5 @@
 module AppParametersSetter
-  module Integration
+  module RailsIntegration
     class Railtie < Rails::Railtie
 
       # manually load the custom initializer before everything else

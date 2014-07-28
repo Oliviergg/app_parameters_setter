@@ -2,7 +2,11 @@ module AppParametersSetter
 	class AppParameter
 
 		def self.load
-			params = YAML.load_file("#{Rails.root}/config/app_parameters.yml")[Rails.env]
+			if defined? Rails
+				params = YAML.load_file("#{Rails.root}/config/app_parameters.yml")[Rails.env]
+			else
+				params = YAML.load_file("config/app_parameters.yml")["base"]
+			end
 			params.each do |key,value|
 				if value.is_a? String
 					result = value.match(/^\$(.*)/)
