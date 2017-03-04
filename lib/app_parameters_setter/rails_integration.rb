@@ -17,7 +17,7 @@ module AppParametersSetter
       if Rails.env.development?
         initializer :app_parameters_reload_on_development do
           ActionController::Base.class_eval do
-            prepend_before_filter { ::AppParametersSetter.reload! }
+            prepend_before_action { ::AppParametersSetter.reload! }
           end
         end
       end
